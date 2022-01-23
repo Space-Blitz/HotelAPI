@@ -28,7 +28,16 @@ namespace HotelListing
         {
 
             services.AddControllers();
-            
+
+            //cors Policy configuration
+            services.AddCors(o=> {
+                o.AddPolicy("AllowAll", builder =>
+                builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+            });
+
+            //add Swagger Configuration
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { 
@@ -60,6 +69,8 @@ namespace HotelListing
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HotelListing v1"));
 
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowAll");//app uses our configured CORS Policy
 
             app.UseRouting();
 
