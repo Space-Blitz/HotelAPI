@@ -28,16 +28,22 @@ namespace HotelListing
         {
 
             services.AddControllers();
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { 
                     Title = "HotelListing", 
                     Version = "v1",
-                    Contact = {
-                        Name = "patrickfitz",
+                    Contact = new OpenApiContact {
+                        Name = "Patrick Fitz",
                         Email = "patrickf1290@gmail.com",
-                        Url = new Uri("https://github.com/patrickf949")
-                    }
+                        Url = new Uri("https://github.com/patrickf949"),
+                    },
+                    License = new OpenApiLicense {
+                        Name = "GNU Public License",
+                        Url = new Uri("https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html"),
+                    },
+                    Description = "A simple hotel listing Web API"
                 });
             });
         }
